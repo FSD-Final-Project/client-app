@@ -64,7 +64,7 @@ export default function TodaySummary() {
     return (
         <DashboardLayout title="Today Summary" subtitle="16 Chats Found">
             {/* Tabs */}
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mb-6 w-fit">
                 {tabs.map((tab) => (
                     <Button
                         key={tab}
