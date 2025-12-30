@@ -6,6 +6,7 @@ import './App.css'
 import TodaySummary from "./pages/TodaySummery";
 import ActiveChats from "./pages/ActiveChats";
 import HistoryStatistics from "./pages/HistoryStatistics";
+import Preferences from "./pages/Preferences";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
                 <Route path="/" element={<TodaySummary />} />
                 <Route path="/active-chats" element={<ActiveChats />} />
                 <Route path="/history" element={<HistoryStatistics />} />
+                <Route path="/preferences" element={<Preferences />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
