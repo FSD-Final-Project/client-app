@@ -1,6 +1,8 @@
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { DatePicker } from "@/components/ui/date-picker";
 import { StatCard } from "@/components/ui/stat-card";
 import { Calendar } from "lucide-react";
+import { useState } from "react";
 import {
     LineChart,
     Line,
@@ -65,27 +67,52 @@ interface MiniPieChartProps {
     colors: string[];
 }
 
-const MiniPieChart = ({ data, colors }: MiniPieChartProps) => (
-    <ResponsiveContainer width={80} height={80}>
-        <PieChart>
-            <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={20}
-                outerRadius={35}
-                paddingAngle={2}
-                dataKey="value"
-                strokeWidth={0}
-            >
-                {data.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-                ))}
-            </Pie>
-        </PieChart>
-    </ResponsiveContainer>
-);
+const MiniPieChart = ({ data, colors }: MiniPieChartProps) => {
+    const total = data.reduce((sum, item) => sum + item.value, 0);
 
+    return (
+        <ResponsiveContainer width={80} height={80}>
+            <PieChart>
+                <Tooltip
+                    content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                            const item = payload[0].payload;
+                            const percent = ((item.value / total) * 100).toFixed(0);
+                            return (
+                                <div className="bg-card border border-border rounded-lg px-2 py-1 shadow-lg text-xs">
+                                    <p className="font-medium text-foreground">{item.name}</p>
+                                    <p className="text-muted-foreground">{item.value} ({percent}%)</p>
+                                </div>
+                            );
+                        }
+                        return null;
+                    }}
+                />
+                <Pie
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={20}
+                    outerRadius={35}
+                    paddingAngle={2}
+                    dataKey="value"
+                    strokeWidth={0}
+                    animationBegin={0}
+                    animationDuration={400}
+                >
+                    {data.map((_, index) => (
+                        <Cell
+                            key={`cell-${index}`}
+                            fill={colors[index % colors.length]}
+                            className="transition-all duration-200 hover:opacity-80"
+                            style={{ cursor: 'pointer' }}
+                        />
+                    ))}
+                </Pie>
+            </PieChart>
+        </ResponsiveContainer>
+    );
+};
 const statCards = [
     {
         chart: <MiniPieChart data={aiMessagesData} colors={COLORS.blue} />,
@@ -110,19 +137,16 @@ const statCards = [
 ];
 
 export default function HistoryStatistics() {
+    const [startDate, setStartDate] = useState<Date>(new Date(2030, 6, 25));
+    const [endDate, setEndDate] = useState<Date>(new Date(2030, 6, 29));
+
     return (
         <DashboardLayout title="History Statistics" subtitle="66 Chats Found">
             {/* Date Range */}
             <div className="flex items-center gap-3 mb-8 light-card rounded-full px-4 py-2 w-fit">
-                <div className="flex items-center gap-2 text-sm text-card-light-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>25 July 2030</span>
-                </div>
+                <DatePicker value={startDate} onChange={(date) => date && setStartDate(date)} />
                 <span className="text-card-light-foreground/60">To</span>
-                <div className="flex items-center gap-2 text-sm text-card-light-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>29 July 2030</span>
-                </div>
+                <DatePicker value={endDate} onChange={(date) => date && setEndDate(date)} />
             </div>
 
             {/* Charts Row */}
