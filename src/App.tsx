@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import './App.css'
+import TodaySummary from "./pages/TodaySummery";
 
 const queryClient = new QueryClient();
 
@@ -10,6 +11,7 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<TodaySummary />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
