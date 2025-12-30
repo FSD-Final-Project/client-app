@@ -11,9 +11,9 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background">
             <Sidebar />
-            <main className="ml-64 p-8">
+            <main className="p-8">
                 <header className="flex items-center justify-between mb-8">
                     <div>
                         <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">

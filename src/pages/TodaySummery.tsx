@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-// import { ChatGroup } from "@/components/chat/ChatGroup";
+import { ChatGroup } from "@/components/chat/ChatGroup";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { TimePicker } from "@/components/ui/time-picker";
 import {
     LineChart,
     Line,
@@ -58,6 +58,8 @@ const tabs = ["All Chats", "Pending", "Completed"];
 export default function TodaySummary() {
     const [activeTab, setActiveTab] = useState("All Chats");
     const [activeChat, setActiveChat] = useState(2);
+    const [startTime, setStartTime] = useState("15:00");
+    const [endTime, setEndTime] = useState("20:30");
 
     return (
         <DashboardLayout title="Today Summary" subtitle="16 Chats Found">
@@ -117,22 +119,28 @@ export default function TodaySummary() {
                     </ResponsiveContainer>
                 </div>
 
+                {/* Chat Groups */}
+                <div className="space-y-3">
+                    {chatGroups.map((group) => (
+                        <ChatGroup
+                            key={group.id}
+                            name={group.name}
+                            avatars={group.avatars}
+                            preview={group.preview}
+                            isActive={activeChat === group.id}
+                            onClick={() => setActiveChat(group.id)}
+                        />
+                    ))}
+                </div>
             </div>
 
             {/* Time Range */}
             <div className="flex items-center gap-3 mt-6 light-card rounded-full px-4 py-2 w-fit">
-                <div className="flex items-center gap-2 text-sm text-card-light-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>15:00</span>
-                </div>
+                <TimePicker value={startTime} onChange={(time) => setStartTime(time)} />
                 <span className="text-muted-foreground">To</span>
-                <div className="flex items-center gap-2 text-sm text-card-light-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>20:30</span>
-                </div>
+                <TimePicker value={endTime} onChange={(time) => setEndTime(time)} />
             </div>
 
-            {/* Summary Text */}
             <div className="mt-6 glass-card rounded-2xl p-6 animate-fade-in">
                 <div className="flex items-start gap-4">
                     <div className="w-1 h-full bg-primary rounded-full" />
