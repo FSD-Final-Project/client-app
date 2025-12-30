@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import './App.css'
 import TodaySummary from "./pages/TodaySummery";
+import ActiveChats from "./pages/ActiveChats";
 
 const queryClient = new QueryClient();
 
@@ -12,6 +13,7 @@ const App = () => (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<TodaySummary />} />
+                <Route path="/active-chats" element={<ActiveChats />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
