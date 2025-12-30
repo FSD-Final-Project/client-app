@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import './App.css'
 
 const queryClient = new QueryClient();
 

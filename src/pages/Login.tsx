@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { User, Lock } from "lucide-react";
 
 export default function Login() {
@@ -28,7 +28,7 @@ export default function Login() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="relative">
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                            <input
+                            <Input
                                 type="text"
                                 placeholder="Email or Phone"
                                 value={email}
@@ -39,7 +39,7 @@ export default function Login() {
 
                         <div className="relative">
                             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                            <input
+                            <Input
                                 type="password"
                                 placeholder="Password"
                                 value={password}
@@ -48,9 +48,9 @@ export default function Login() {
                             />
                         </div>
 
-                        <button type="submit" className="w-full h-12 rounded-xl font-semibold">
+                        <Button type="submit" className="w-full h-12 rounded-xl font-semibold">
                             Sign In
-                        </button>
+                        </Button>
                     </form>
 
                     <div className="mt-6">
