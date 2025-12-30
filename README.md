@@ -1,10 +1,12 @@
 # client-app
 
-app for authentication, set preferences and dashboards analytics
+app for authentication, set preferences and dashboards analytics of Chat Assistant
 
-## Project info
+## App Preview
 
-**edit the project locally**
+![](public/FSD.gif)
+
+## Running the project locally
 
 ```sh
 git clone https://github.com/FSD-Final-Project/client-app.git
@@ -20,5 +22,5 @@ This project is built with:
 - Vite
 - TypeScript
 - React
-- shadcn-ui
 - Tailwind CSS
+- Radix UI
