@@ -1,0 +1,134 @@
+@import url('@fontsource/outfit/400.css');
+@import url('@fontsource/outfit/500.css');
+@import url('@fontsource/outfit/600.css');
+@import url('@fontsource/outfit/700.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 50% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 45% 20%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 45% 20%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 190 70% 50%;
+    --primary-foreground: 220 50% 10%;
+
+    --secondary: 210 30% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 35% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 190 70% 50%;
+    --accent-foreground: 220 50% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 30% 30%;
+    --input: 215 35% 25%;
+    --ring: 190 70% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 215 40% 18%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 70% 50%;
+    --sidebar-primary-foreground: 220 50% 10%;
+    --sidebar-accent: 215 35% 25%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 30% 25%;
+    --sidebar-ring: 190 70% 50%;
+
+    /* Custom tokens */
+    --card-light: 210 30% 95%;
+    --card-light-foreground: 220 50% 15%;
+    --chart-red: 0 70% 50%;
+    --chart-yellow: 45 90% 55%;
+    --chart-green: 140 60% 45%;
+    --chart-blue: 200 80% 55%;
+    --chart-orange: 25 90% 55%;
+    --gradient-card: linear-gradient(
+      135deg,
+      hsl(215 40% 22%) 0%,
+      hsl(215 45% 18%) 100%
+    );
+    --gradient-sidebar: linear-gradient(
+      180deg,
+      hsl(215 40% 20%) 0%,
+      hsl(220 50% 12%) 100%
+    );
+  }
+
+  .dark {
+    --background: 220 50% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 45% 20%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 45% 20%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 190 70% 50%;
+    --primary-foreground: 220 50% 10%;
+
+    --secondary: 210 30% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 35% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 190 70% 50%;
+    --accent-foreground: 220 50% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 30% 30%;
+    --input: 215 35% 25%;
+    --ring: 190 70% 50%;
+
+    --sidebar-background: 215 40% 18%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 70% 50%;
+    --sidebar-primary-foreground: 220 50% 10%;
+    --sidebar-accent: 215 35% 25%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 30% 25%;
+    --sidebar-ring: 190 70% 50%;
+
+    --card-light: 210 30% 95%;
+    --card-light-foreground: 220 50% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg;
+  }
+
+  .light-card {
+    background: hsl(var(--card-light));
+    color: hsl(var(--card-light-foreground));
+  }
+}
